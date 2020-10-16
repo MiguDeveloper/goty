@@ -1,3 +1,9 @@
+export interface GameResponse {
+  isSuccess: boolean;
+  message: string;
+  data: Game[];
+}
+
 export interface Game {
   votos: number;
   name: string;
@@ -5,7 +11,12 @@ export interface Game {
   id: string;
 }
 
-export interface GameResponse {
+export interface GameRespVoto {
   isSuccess: boolean;
   message: string;
+}
+
+export interface GameResult {
+  name: string;
+  value: number;
 }

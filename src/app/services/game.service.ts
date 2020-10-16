@@ -1,5 +1,5 @@
+import { GameResponse, GameRespVoto } from './../models/game';
 import { environment } from './../../environments/environment';
-import { Game } from './../models/game';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,11 +10,15 @@ const baseUrl = environment.url;
   providedIn: 'root',
 })
 export class GameService {
-  urlGetJuegos = `${baseUrl}/api/goty`;
+  urlJuegos = `${baseUrl}/api/goty`;
 
   constructor(private httpClient: HttpClient) {}
 
-  getJuegos(): Observable<Game[]> {
-    return this.httpClient.get<Game[]>(this.urlGetJuegos);
+  getJuegos(): Observable<GameResponse> {
+    return this.httpClient.get<GameResponse>(this.urlJuegos);
+  }
+
+  votarJuego(id: string): Observable<GameRespVoto> {
+    return this.httpClient.post<GameRespVoto>(`${this.urlJuegos}/${id}`, '');
   }
 }
